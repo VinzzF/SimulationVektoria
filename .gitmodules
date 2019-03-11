@@ -1,0 +1,3 @@
+[submodule "Rumble3D"]
+	path = Rumble3D
+	url = https://github.com/Nelaty/Rumble3D.git
