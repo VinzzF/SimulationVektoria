@@ -154,15 +154,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Cave.h" />
-    <ClInclude Include="ExampleGui.h" />
+    <ClInclude Include="Examples\FallingCubeScene.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Gui\Button.h" />
-    <ClInclude Include="Gui\Gui.h" />
-    <ClInclude Include="Gui\Screen.h" />
-    <ClInclude Include="Gui\Text.h" />
-    <ClInclude Include="Gui\Widget.h" />
-    <ClInclude Include="ParticleExercises\FallingBallSimulation.h" />
-    <ClInclude Include="ParticleExercises\PendulumExercise.h" />
     <ClInclude Include="PhysicInterfaces\Converter.h" />
     <ClInclude Include="PhysicInterfaces\ParticlePlacement.h" />
     <ClInclude Include="PhysicInterfaces\ParticlePlacementWorld.h" />
@@ -175,15 +168,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cave.cpp" />
-    <ClCompile Include="ExampleGui.cpp" />
+    <ClCompile Include="Examples\FallingCubeScene.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Gui\Button.cpp" />
-    <ClCompile Include="Gui\Gui.cpp" />
-    <ClCompile Include="Gui\Screen.cpp" />
-    <ClCompile Include="Gui\Text.cpp" />
-    <ClCompile Include="Gui\Widget.cpp" />
-    <ClCompile Include="ParticleExercises\FallingBallSimulation.cpp" />
-    <ClCompile Include="ParticleExercises\PendulumExercise.cpp" />
     <ClCompile Include="PhysicInterfaces\ParticlePlacement.cpp" />
     <ClCompile Include="PhysicInterfaces\ParticlePlacementWorld.cpp" />
     <ClCompile Include="PhysicInterfaces\PhysicsEngineWrapper.cpp" />

@@ -10,9 +10,14 @@ class SimulationScene : public Vektoria::CScene
 public:
 	virtual ~SimulationScene();
 
+	/** 
+	 * Update this scene
+	 * It is called update() instead of tick(), since there is
+	 * already a Tick() method defined in Vektora::Scene 
+	 */
 	virtual void update(float timeDelta);
-	
-	Vektoria::CCamera* getCamera();
+
+	/** Get the camera of this scene. */
 	Vektoria::CCamera* getCamera() const;
 
 	void setGame(CGame* game);

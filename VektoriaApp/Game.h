@@ -19,10 +19,7 @@
 #endif
 #endif
 
-#include "ParticleExercises/FallingBallSimulation.h"
-#include "ParticleExercises/PendulumExercise.h"
-
-#include "ExampleGui.h"
+#include "Examples/FallingCubeScene.h"
 
 #include "Vektoria\Root.h"
 
@@ -74,22 +71,10 @@ private:
 	Vektoria::CDeviceKeyboard m_keyboard;
 	Vektoria::CDeviceMouse m_mouse;
 
-	/* Gui */
-	ExampleGui m_gui;
-
-	// Text rendering test
-	Vektoria::CWritingFont m_writingFont;
-	Vektoria::CWriting m_writing;
-	Vektoria::CFloatRect m_writingRect;
-
-	Text* m_text;
-
-
 	/* Scenes */
 	SimulationScene* m_activeScene;
 
-	FallingBallSimulation* m_fallingBallSim;
-	PendulumSimulation* m_pendulumSim;
+	FallingCubeScene* m_fallingCubeScene;
 
 	void prepareScene(SimulationScene* scene);
 

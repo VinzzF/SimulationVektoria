@@ -24,9 +24,6 @@
     <ClInclude Include="targetver.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="ExampleGui.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Cave.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -51,25 +48,7 @@
     <ClInclude Include="PhysicInterfaces\RigidBodyPlacementWorld.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleExercises\FallingBallSimulation.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleExercises\PendulumExercise.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui\Button.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui\Gui.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui\Screen.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui\Text.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="Gui\Widget.h">
+    <ClInclude Include="Examples\FallingCubeScene.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
@@ -78,9 +57,6 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="VektoriaApp.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="ExampleGui.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Cave.cpp">
@@ -104,25 +80,7 @@
     <ClCompile Include="PhysicInterfaces\RigidBodyPlacementWorld.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleExercises\FallingBallSimulation.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleExercises\PendulumExercise.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Gui\Button.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Gui\Gui.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Gui\Screen.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Gui\Text.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Gui\Widget.cpp">
+    <ClCompile Include="Examples\FallingCubeScene.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

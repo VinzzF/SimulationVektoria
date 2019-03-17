@@ -12,6 +12,7 @@ CGame::~CGame(void)
 
 void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CSplash * psplash)
 {
+	// Initialize Vektoria base
 	m_root.Init(psplash);
 	m_camera.Init(QUARTERPI);
 	m_frame.Init(hwnd, procOS); 
@@ -38,18 +39,16 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CS
 	// Init geometries
 	m_sphereGeo.Init(1.0f, &m_sphereMat, 50, 50);
 	m_cubeGeo.Init(1.0f, &m_cubeMat);
-
-
 	m_cameraPlacement.TranslateZ(8.0f);
-
 
 	// Init devices
 	m_frame.AddDeviceKeyboard(&m_keyboard);
 	m_frame.AddDeviceMouse(&m_mouse);
 
 	initScenes();
-	//m_gui.init(&m_viewport);
-	changeScene(m_fallingBallSim);
+
+	// Change the starting scene
+	changeScene(m_fallingCubeScene);
 }
 
 void CGame::Tick(float fTime, float fTimeDelta)
@@ -89,11 +88,17 @@ Vektoria::CDeviceMouse& CGame::getMouse()
 
 void CGame::initScenes()
 {
-	m_fallingBallSim = new FallingBallSimulation(&m_sphereGeo);
-	prepareScene(m_fallingBallSim);
+	// Example scene
+	m_fallingCubeScene = new FallingCubeScene(&m_cubeGeo);
+	prepareScene(m_fallingCubeScene);
 
-	m_pendulumSim = new PendulumSimulation(&m_sphereGeo, 20);
-	prepareScene(m_pendulumSim);
+	// ADD NEW SCENES HERE
+
+	// PARTICLE EXERCISES
+	// Exercise 2
+
+	// Exercise 3
+	// ...
 }
 
 void CGame::changeScene(SimulationScene* scene)
@@ -117,7 +122,7 @@ void CGame::changeScene(SimulationScene* scene)
 void CGame::prepareScene(SimulationScene* scene)
 {
 	scene->setGame(this);
-	m_scenes.emplace_back(scene);
+	m_scenes.push_back(scene);
 }
 
 void CGame::handleSceneChange()
