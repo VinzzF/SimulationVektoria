@@ -26,6 +26,6 @@ private:
 
 	r3::PhysicsEngine m_physicsEngine;
 
-	ParticlePlacementWorld_Ptr m_particleWorld;
-	RigidBodyPlacementWorld_Ptr m_rigidBodyWorld;
+	ParticlePlacementWorld_Ptr m_particlePlacementWorld;
+	RigidBodyPlacementWorld_Ptr m_rigidBodyPlacementWorld;
 };

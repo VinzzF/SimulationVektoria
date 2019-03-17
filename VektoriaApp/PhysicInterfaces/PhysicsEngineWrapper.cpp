@@ -24,27 +24,27 @@ void PhysicsEngineWrapper::tick(float timeDelta)
 	//printf("Timedelta %f, fps %f\n", timeDelta, 1.0f / timeDelta);
 	m_physicsEngine.tick(timeDelta);
 
-	m_particleWorld->update();
-	m_rigidBodyWorld->update();
+	m_particlePlacementWorld->update();
+	m_rigidBodyPlacementWorld->update();
 }
 
 ParticlePlacementWorld* PhysicsEngineWrapper::getParticlePlacementWorld() const
 {
-	return m_particleWorld.get();
+	return m_particlePlacementWorld.get();
 }
 
 RigidBodyPlacementWorld* PhysicsEngineWrapper::getRigidBodyPlacementWorld() const
 {
-	return m_rigidBodyWorld.get();
+	return m_rigidBodyPlacementWorld.get();
 }
 
 void PhysicsEngineWrapper::init()
 {
-	m_particleWorld = std::make_unique<ParticlePlacementWorld>();
-	m_rigidBodyWorld = std::make_unique<RigidBodyPlacementWorld>();
+	m_particlePlacementWorld = std::make_unique<ParticlePlacementWorld>();
+	m_rigidBodyPlacementWorld = std::make_unique<RigidBodyPlacementWorld>();
 
-	m_physicsEngine.registerModule(m_particleWorld->getWorld(), "particle");
-	m_physicsEngine.registerModule(m_rigidBodyWorld->getWorld(), "rigid_body");
+	m_physicsEngine.registerModule(m_particlePlacementWorld->getWorld(), "particle");
+	m_physicsEngine.registerModule(m_rigidBodyPlacementWorld->getWorld(), "rigid_body");
 
 	m_physicsEngine.resume();
 }
