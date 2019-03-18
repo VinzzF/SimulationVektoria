@@ -41,3 +41,8 @@ void FallingCubeScene::update(const float timeDelta)
 {
 	__super::update(timeDelta);
 }
+
+void FallingCubeScene::reset()
+{
+	m_particle->reset();
+}

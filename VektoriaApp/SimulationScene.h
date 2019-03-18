@@ -17,6 +17,9 @@ public:
 	 */
 	virtual void update(float timeDelta);
 
+	/** Reset the scene to its initial state. */
+	virtual void reset();
+
 	/** Get the camera of this scene. */
 	Vektoria::CCamera* getCamera() const;
 

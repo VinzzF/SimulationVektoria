@@ -79,7 +79,7 @@ private:
 	void prepareScene(SimulationScene* scene);
 
 	/** Handle user input for scene changing. */
-	void handleSceneChange();
+	void handleUserInput();
 
 	/** Change the active scene to the next one. */
 	void nextScene();

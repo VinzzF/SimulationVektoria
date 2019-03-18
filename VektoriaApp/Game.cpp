@@ -59,7 +59,7 @@ void CGame::Tick(float fTime, float fTimeDelta)
 		float timeDelta = 10.0f * fTimeDelta;
 		m_keyboard.PlaceWASD(m_cameraPlacement, timeDelta);
 	}
-	handleSceneChange();
+	handleUserInput();
 
 	m_root.Tick(fTimeDelta);
 }
@@ -125,7 +125,7 @@ void CGame::prepareScene(SimulationScene* scene)
 	m_scenes.push_back(scene);
 }
 
-void CGame::handleSceneChange()
+void CGame::handleUserInput()
 {
 	if(m_keyboard.KeyDown(DIK_1))
 	{
@@ -134,6 +134,11 @@ void CGame::handleSceneChange()
 	else if(m_keyboard.KeyDown(DIK_2))
 	{
 		nextScene();
+	}
+
+	if(m_keyboard.KeyDown(DIK_T))
+	{
+		m_activeScene->reset();
 	}
 }
 

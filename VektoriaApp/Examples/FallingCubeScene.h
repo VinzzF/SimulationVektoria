@@ -20,6 +20,7 @@ public:
 	~FallingCubeScene();
 
 	void update(float timeDelta) override;
+	void reset() override;
 
 private:
 	Vektoria::CPlacement* m_placement;

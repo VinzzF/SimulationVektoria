@@ -10,6 +10,15 @@ void SimulationScene::update(float timeDelta)
 	m_physicsEngine.tick(timeDelta);
 }
 
+void SimulationScene::reset()
+{
+}
+
+Vektoria::CCamera* SimulationScene::getCamera() const
+{
+	return m_camera;
+}
+
 void SimulationScene::setGame(CGame* game)
 {
 	m_game = game;
