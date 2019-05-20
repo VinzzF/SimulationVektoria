@@ -51,6 +51,9 @@
     <ClInclude Include="Examples\FallingCubeScene.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Examples\EmptyScene.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -81,6 +84,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Examples\FallingCubeScene.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\EmptyScene.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

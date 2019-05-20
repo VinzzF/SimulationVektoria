@@ -93,12 +93,8 @@ void CGame::initScenes()
 	prepareScene(m_fallingCubeScene);
 
 	// ADD NEW SCENES HERE
-
-	// PARTICLE EXERCISES
-	// Exercise 2
-
-	// Exercise 3
 	// ...
+
 }
 
 void CGame::changeScene(SimulationScene* scene)

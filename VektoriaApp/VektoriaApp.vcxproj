@@ -154,6 +154,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Cave.h" />
+    <ClInclude Include="Examples\EmptyScene.h" />
     <ClInclude Include="Examples\FallingCubeScene.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="PhysicInterfaces\Converter.h" />
@@ -168,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cave.cpp" />
+    <ClCompile Include="Examples\EmptyScene.cpp" />
     <ClCompile Include="Examples\FallingCubeScene.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="PhysicInterfaces\ParticlePlacement.cpp" />
