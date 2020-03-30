@@ -6,6 +6,7 @@
 namespace r3
 {
 	class RigidBodyWorld;
+	class RigidBody;
 }
 
 class RigidBodyPlacement;
@@ -20,6 +21,11 @@ public:
 
 	/** \brief Update all rigid body nodes. */
 	void update();
+
+	/** \brief Get all registered rigid bodies. */
+	const std::vector<r3::RigidBody*>& getRigidBodies() const;
+	/** \brief Get all registered rigid bodies. */
+	std::vector<r3::RigidBody*>& getRigidBodies();
 
 	/** \brief Register a new rigid body placement. */
 	void addRigidBodyPlacement(RigidBodyPlacement* placement);

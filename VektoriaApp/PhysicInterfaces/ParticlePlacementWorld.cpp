@@ -1,5 +1,6 @@
 #include "ParticlePlacementWorld.h"
 #include "R3D/ParticleEngine/ParticleWorld.h"
+#include "R3D/ParticleEngine/Particle.h"
 #include "R3D/ParticleEngine/DefaultParticleEngineCI.h"
 
 #include "ParticlePlacement.h"
@@ -22,6 +23,16 @@ void ParticlePlacementWorld::update()
 	}
 }
 
+const std::vector<r3::Particle*>& ParticlePlacementWorld::getParticles() const
+{
+	return m_world->getParticles();
+}
+
+std::vector<r3::Particle*>& ParticlePlacementWorld::getParticles()
+{
+	return m_world->getParticles();
+}
+
 void ParticlePlacementWorld::addParticlePlacement(ParticlePlacement* placement)
 {
 	m_particlePlacements.push_back(placement);
@@ -38,6 +49,7 @@ bool ParticlePlacementWorld::removeParticlePlacement(ParticlePlacement* placemen
 	if(found)
 	{
 		m_world->removeParticle(placement->getParticle());
+		m_particlePlacements.erase(removedPlacement);
 	}
 
 	return found;

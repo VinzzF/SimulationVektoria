@@ -6,6 +6,7 @@
 namespace r3
 {
 	class ParticleWorld;
+	class Particle;
 }
 
 class ParticlePlacement;
@@ -20,6 +21,11 @@ public:
 
 	/** \brief Update all particle placements. */
 	void update();
+
+	/** \brief Get all registered particles. */
+	const std::vector<r3::Particle*>& getParticles() const;
+	/** \brief Get all registered particles. */
+	std::vector<r3::Particle*>& getParticles();
 
 	/** \brief Add a new particle particle placement. */
 	void addParticlePlacement(ParticlePlacement* placement);

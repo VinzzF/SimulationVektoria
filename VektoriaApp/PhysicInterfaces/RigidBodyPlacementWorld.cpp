@@ -1,6 +1,7 @@
 #include "RigidBodyPlacementWorld.h"
 #include "RigidBodyPlacement.h"
 #include "R3D/RigidBodyEngine/RigidBodyWorld.h"
+#include "R3D/RigidBodyEngine/RigidBody.h"
 #include "R3D/RigidBodyEngine/DefaultRigidBodyEngineCI.h"
 
 #include <algorithm>
@@ -11,7 +12,8 @@ RigidBodyPlacementWorld::RigidBodyPlacementWorld()
 }
 
 RigidBodyPlacementWorld::~RigidBodyPlacementWorld()
-= default;
+{
+}
 
 void RigidBodyPlacementWorld::update()
 {
@@ -19,6 +21,16 @@ void RigidBodyPlacementWorld::update()
 	{
 		it->update();
 	}
+}
+
+const std::vector<r3::RigidBody*>& RigidBodyPlacementWorld::getRigidBodies() const
+{
+	return m_world->getRigidBodies();
+}
+
+std::vector<r3::RigidBody*>& RigidBodyPlacementWorld::getRigidBodies()
+{
+	return m_world->getRigidBodies();
 }
 
 void RigidBodyPlacementWorld::addRigidBodyPlacement(RigidBodyPlacement* placement)
@@ -36,6 +48,7 @@ bool RigidBodyPlacementWorld::removeRigidBodyPlacement(RigidBodyPlacement* place
 	if(found)
 	{
 		m_world->removeRigidBody(placement->getRigidBody());
+		m_rigidBodyPlacements.erase(removedBody);
 	}
 
 	return found;
