@@ -15,15 +15,17 @@ RigidBodyPlacement::~RigidBodyPlacement()
 void RigidBodyPlacement::update() const
 {
 	const auto& transform = m_rigidBody->getTransform();
-	auto pos = convertVector(transform.getPosition());
-	
-	auto scale = m_placement->GetScale();
-	m_placement->Scale(scale);
-	m_placement->TranslateDelta(pos);
-	
-	
-	/// \todo set rotation
-	//m_placement->Rotate(transform.getRotation());	
+	auto position = convertVector(transform.getPosition());
+
+	// Build transformation matrices
+	glm::quat rotation = transform.getRotation();
+	auto rotMat = Vektoria::CQuaternion(rotation.x, rotation.y, rotation.z, rotation.w).GetMatrix();
+	Vektoria::CHMat scaleMat;
+	scaleMat.Scale(m_placement->GetScale());
+
+	// Apply transformation
+	m_placement->SetMat(rotMat * scaleMat);
+	m_placement->TranslateDelta(position);
 }
 
 void RigidBodyPlacement::setRigidBody(r3::RigidBody* rigidBody)
