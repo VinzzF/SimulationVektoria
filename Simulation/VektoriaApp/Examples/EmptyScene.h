@@ -2,6 +2,9 @@
 
 #include "SimulationScene.h"
 
+/**
+ * An empty black scene
+ */
 class EmptyScene : public SimulationScene
 {
 public:
@@ -11,6 +14,6 @@ public:
 	void update(float timeDelta) override;
 	void reset() override;
 
-private:
+protected:
 
 };

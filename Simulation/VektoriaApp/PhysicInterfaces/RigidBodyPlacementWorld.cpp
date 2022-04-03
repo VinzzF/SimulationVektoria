@@ -1,11 +1,10 @@
 #include "pch.h"
 #include "RigidBodyPlacementWorld.h"
 #include "RigidBodyPlacement.h"
+
 #include "R3D/RigidBodyEngine/RigidBodyWorld.h"
 #include "R3D/RigidBodyEngine/RigidBody.h"
 #include "R3D/RigidBodyEngine/DefaultRigidBodyEngineCI.h"
-
-#include <algorithm>
 
 RigidBodyPlacementWorld::RigidBodyPlacementWorld()
 {

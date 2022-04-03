@@ -2,6 +2,11 @@
 
 #include "SimulationScene.h"
 
+/**
+ * Common scene to inherit from, that includes:
+ * - A camera
+ * - A parallel light
+ */
 class DefaultScene : public SimulationScene
 {
 public:

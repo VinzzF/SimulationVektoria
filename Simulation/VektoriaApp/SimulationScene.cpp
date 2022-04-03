@@ -2,8 +2,6 @@
 #include "SimulationScene.h"
 #include "Game.h"
 
-CGame* SimulationScene::ms_game;
-
 SimulationScene::SimulationScene()
 	: m_bWASDCam(true)
 {
@@ -24,7 +22,7 @@ void SimulationScene::regMaterial(Vektoria::CMaterial* pzm)
 
 SimulationScene::~SimulationScene()
 {
-	// zusätzlich registrierte Materialien wieder vom Root lösen
+	// unload additionally-registered Materials from the root node
 	for (auto& pzm : m_materials)
 		CGame::GetInstance().getRoot().SubMaterial(pzm);
 }
@@ -40,11 +38,6 @@ void SimulationScene::reset()
 
 void SimulationScene::activate()
 {
-}
-
-void SimulationScene::setGame(CGame* game)
-{
-	ms_game = game;
 }
 
 Vektoria::CCamera& SimulationScene::getCamera()

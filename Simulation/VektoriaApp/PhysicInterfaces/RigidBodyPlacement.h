@@ -1,10 +1,6 @@
 #pragma once
-#include "R3D/RigidBodyEngine/RigidBody.h"
 
-namespace Vektoria
-{
-	class CPlacement;
-}
+#include "R3D/RigidBodyEngine/RigidBody.h"
 
 namespace r3
 {

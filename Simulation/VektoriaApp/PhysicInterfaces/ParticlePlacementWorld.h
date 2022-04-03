@@ -1,7 +1,4 @@
 #pragma once
-#include <memory>
-
-#include <vector>
 
 namespace r3
 {

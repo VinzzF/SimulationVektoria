@@ -1,10 +1,5 @@
 #pragma once
 
-namespace Vektoria
-{
-	class CPlacement;
-}
-
 namespace r3
 {
 	class Particle;

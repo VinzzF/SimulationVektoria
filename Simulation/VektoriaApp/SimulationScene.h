@@ -1,9 +1,6 @@
 #pragma once
-#include "Vektoria/Scene.h"
-#include "Vektoria/Camera.h"
-#include "PhysicInterfaces/PhysicsEngineWrapper.h"
 
-class CGame;
+#include "PhysicInterfaces/PhysicsEngineWrapper.h"
 
 class SimulationScene : public Vektoria::CScene
 {
@@ -22,8 +19,6 @@ public:
 
 	virtual void activate();
 
-	static void setGame(CGame* game);
-
 	Vektoria::CCamera& getCamera();
 	Vektoria::CPlacement& getCameraPlacement();
 
@@ -41,13 +36,16 @@ protected:
 	 */
 	void regMaterial(Vektoria::CMaterial* pzm);
 
-	static CGame* ms_game;
+	// necessary Vektoria scene components
 	Vektoria::CCamera m_zc;
 	Vektoria::CPlacement m_zpCamera;
 
 	PhysicsEngineWrapper m_physicsEngine;
 
 private:
+	// WASD camera movement by game
 	bool m_bWASDCam;
+
+	// additionally-registered Materials by the scene
 	std::set<Vektoria::CMaterial*> m_materials;
 };

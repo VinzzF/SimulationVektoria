@@ -56,7 +56,7 @@ private:
 	/* Scenes */
 	SimulationScene* m_activeScene;
 	std::vector<SimulationScene*> m_scenes;
-	int m_activeSceneIndex{};
+	int m_activeSceneIndex;
 };
 
 

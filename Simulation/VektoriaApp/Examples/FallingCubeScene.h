@@ -6,14 +6,9 @@
 #include "R3D/ParticleEngine/Particle.h"
 #include "R3D/ParticleEngine/ParticleGravity.h"
 
-#include <string>
-
-namespace Vektoria
-{
-	class CGeo;
-	class CPlacement;
-}
-
+/**
+ * Sample scene using Rumble3D physics engine for a falling cube
+ */
 class FallingCubeScene : public DefaultScene
 {
 public:
@@ -22,7 +17,7 @@ public:
 
 	void reset() override;
 
-private:
+protected:
 	Vektoria::CMaterial m_zmCube;
 	Vektoria::CPlacement m_zpCube;
 	Vektoria::CGeoCube m_zgCube;

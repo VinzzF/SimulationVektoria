@@ -13,6 +13,8 @@ CGame& CGame::GetInstance()
 }
 
 CGame::CGame()
+	: m_activeScene(nullptr)
+	, m_activeSceneIndex(0)
 {
 }
 
@@ -26,9 +28,11 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), Ve
 	m_zr.Init(psplash);
 	// m_zf.SetApiRender(eApiRender_DirectX11_Shadermodel50_Monolight);
 	m_zf.Init(hwnd, procOS); 
+	//m_zr.SetFrameRateMax(144.0f); // doesn't seem to be working at this time :(
 	m_zr.AddFrame(&m_zf);
 	m_zf.AddViewport(&m_zv);
 
+	// Init background (comment out if black background is desired)
 	m_zb.InitFull(const_cast<char*>("textures\\blue_image.jpg"));
 	m_zv.AddBackground(&m_zb);
 
@@ -36,15 +40,14 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), Ve
 	m_zf.AddDeviceKeyboard(&m_zdk);
 	m_zf.AddDeviceMouse(&m_zdm);
 
+	// Init scenes
 	initScenes();
-
-	// Change the starting scene
-	changeScene(0);
+	changeScene(0); // initial scene
 }
 
 void CGame::Tick(float fTime, float fTimeDelta)
 {
-	// Root muss zuerst ticken
+	// Root must tick first! (initializes game on first tick)
 	m_zr.Tick(fTimeDelta);
 
 	if (m_activeScene)
@@ -54,14 +57,14 @@ void CGame::Tick(float fTime, float fTimeDelta)
 	}
 	handleUserInput();
 
+	// Prevent very high framerates, that can cause hardware damage
+	// Comment out, if you have low FPS / reliable hardware
+	// Can be removed, once Vektoria::CRoot::SetFrameRateMax() starts working properly
 	Sleep(1u);
 }
 
 void CGame::Fini()
 {
-	// globale Dependency Injection, bester Kompromiss...
-	SimulationScene::setGame(nullptr);
-
 	// Hier die Finalisierung Deiner Vektoria-Objekte einfügen:
 }
 
@@ -89,9 +92,6 @@ Vektoria::CDeviceMouse& CGame::getMouse()
 
 void CGame::initScenes()
 {
-	// globale Dependency Injection, bester Kompromiss...
-	SimulationScene::setGame(this);
-
 	// Example scene
 	addScene(new FallingCubeScene);
 
@@ -102,7 +102,6 @@ void CGame::initScenes()
 
 void CGame::addScene(SimulationScene* scene)
 {
-	scene->setGame(this);
 	m_scenes.push_back(scene);
 }
 

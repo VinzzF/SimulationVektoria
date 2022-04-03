@@ -6,9 +6,6 @@
 
 #include "R3D/ParticleEngine/ParticleWorld.h"
 
-#include "Vektoria/Geo.h"
-#include "Vektoria/Placement.h"
-
 FallingCubeScene::FallingCubeScene()
 {
 	m_zmCube.MakeTextureDiffuse(const_cast<char*>("./../Resources/wood.jpg"));

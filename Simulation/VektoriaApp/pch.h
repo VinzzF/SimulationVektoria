@@ -25,6 +25,8 @@
 #include <string>
 #include <set>
 #include <vector>
+#include <memory>
+#include <algorithm>
 
 // Vektoria
 #ifdef _WIN64
