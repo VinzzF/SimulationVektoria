@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{875CCC02-C17C-4145-A074-6C7FB9250A48}</ProjectGuid>
     <RootNamespace>VektoriaApp</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -56,68 +56,74 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Props\Vektoria.LibDir.props" />
+    <Import Project="..\..\Props\Vektoria.DLL.Debug32.props" />
+    <Import Project="..\..\Props\Vektoria.Core.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Props\Vektoria.LibDir.props" />
+    <Import Project="..\..\Props\Vektoria.DLL.Debug64.props" />
+    <Import Project="..\..\Props\Vektoria.Core.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Props\Vektoria.LibDir.props" />
+    <Import Project="..\..\Props\Vektoria.DLL.Release32.props" />
+    <Import Project="..\..\Props\Vektoria.Core.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\Props\Vektoria.LibDir.props" />
+    <Import Project="..\..\Props\Vektoria.DLL.Release64.props" />
+    <Import Project="..\..\Props\Vektoria.Core.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(DXSDK_DIR)Include;..\..\Lib;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(RUMBLE3D_DIR)\Rumble3D\include;$(GLM_DIR);$(IncludePath)</IncludePath>
+    <LibraryPath>$(RUMBLE3D_DIR)\Build\$(PlatformShortName)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(DXSDK_DIR)Include;2010%29\Include;..\..\Lib;$(IncludePath)</IncludePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>$(DXSDK_DIR)Lib\x86;..\..\Lib\Debug;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LibraryPath>$(DXSDK_DIR)Lib\x64;..\..\Lib\Debug64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir);$(RUMBLE3D_DIR)\Rumble3D\include;$(GLM_DIR);$(IncludePath)</IncludePath>
+    <LibraryPath>$(RUMBLE3D_DIR)\Build\$(PlatformShortName)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(DXSDK_DIR)Include;..\..\Lib;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir);$(RUMBLE3D_DIR)\Rumble3D\include;$(GLM_DIR);$(IncludePath)</IncludePath>
+    <LibraryPath>$(RUMBLE3D_DIR)\Build\$(PlatformShortName)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(DXSDK_DIR)Include;2010%29\Include;..\..\Lib;..\..\Lib\Release64;$(IncludePath)</IncludePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath);..\..\lib\Release</LibraryPath>
-    <ReferencePath>$(VC_ReferencesPath_x86);...\..\lib\Release</ReferencePath>
-    <SourcePath>$(VC_SourcePath);..\..\lib\Release</SourcePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LibraryPath>..\..\Lib\Release64;$(DXSDK_DIR)Lib\x64;$(LibraryPath)</LibraryPath>
-    <ExecutablePath>$(ExecutablePath);..\..\Lib\Release64;</ExecutablePath>
-    <ReferencePath>$(VC_ReferencesPath_x64);..\..\Lib\Release64;</ReferencePath>
-    <LibraryWPath>$(WindowsSDK_MetadataPath);..\..\Lib\Release64;</LibraryWPath>
+    <IncludePath>$(ProjectDir);$(RUMBLE3D_DIR)\Rumble3D\include;$(GLM_DIR);$(IncludePath)</IncludePath>
+    <LibraryPath>$(RUMBLE3D_DIR)\Build\$(PlatformShortName)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions); _DEBUG;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Rumble3D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions); _DEBUG;_CRT_SECURE_NO_WARNINGS;</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)/Rumble3D/Rumble3D/include</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Rumble3D/Build/$(PlatformShortName)/$(Configuration)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Rumble3D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -127,12 +133,17 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>Rumble3D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -141,22 +152,26 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(SolutionDir)/Rumble3D/Rumble3D/include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>..\..\Lib\Release64;$(SolutionDir)Rumble3D/Build/$(PlatformShortName)/$(Configuration)</AdditionalLibraryDirectories>
       <AdditionalDependencies>Rumble3D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Cave.h" />
+    <ClInclude Include="CaveScene.h" />
+    <ClInclude Include="DefaultScene.h" />
     <ClInclude Include="Examples\EmptyScene.h" />
     <ClInclude Include="Examples\FallingCubeScene.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="pch.h" />
     <ClInclude Include="PhysicInterfaces\Converter.h" />
     <ClInclude Include="PhysicInterfaces\ParticlePlacement.h" />
     <ClInclude Include="PhysicInterfaces\ParticlePlacementWorld.h" />
@@ -168,10 +183,17 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Cave.cpp" />
+    <ClCompile Include="CaveScene.cpp" />
+    <ClCompile Include="DefaultScene.cpp" />
     <ClCompile Include="Examples\EmptyScene.cpp" />
     <ClCompile Include="Examples\FallingCubeScene.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="PhysicInterfaces\ParticlePlacement.cpp" />
     <ClCompile Include="PhysicInterfaces\ParticlePlacementWorld.cpp" />
     <ClCompile Include="PhysicInterfaces\PhysicsEngineWrapper.cpp" />
@@ -181,7 +203,6 @@
     <ClCompile Include="VektoriaApp.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="res\VektoriaTest.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -189,12 +210,5 @@
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
-    <Import Project="..\packages\glm.0.9.9\build\native\glm.targets" Condition="Exists('..\packages\glm.0.9.9\build\native\glm.targets')" />
   </ImportGroup>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>Dieses Projekt verweist auf mindestens ein NuGet-Paket, das auf diesem Computer fehlt. Verwenden Sie die Wiederherstellung von NuGet-Paketen, um die fehlenden Dateien herunterzuladen. Weitere Informationen finden Sie unter "http://go.microsoft.com/fwlink/?LinkID=322105". Die fehlende Datei ist "{0}".</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\glm.0.9.9\build\native\glm.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\glm.0.9.9\build\native\glm.targets'))" />
-  </Target>
 </Project>
