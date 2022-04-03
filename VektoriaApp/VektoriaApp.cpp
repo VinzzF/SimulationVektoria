@@ -1,25 +1,28 @@
-// VektoriaApp.cpp : Definiert den Einstiegspunkt für die Konsolenanwendung.
-//
+// ------------------------------------------------------------------------
+// VektoriaApp.cpp : Definiert den Einstiegspunkt für die Konsolenanwendung
+// Autor: Tobias Breiner
+// ------------------------------------------------------------------------
 
-
-#include <windows.h>
-#include "resource.h"
-#include "Game.h"
-#include "Vektoria\Timer.h"
-#include "Vektoria\Splash.h"
-#include "Mmsystem.h"
+#include "pch.h"
+#include "resource.h" // Das Icon
+#include "Game.h" // Das Spiel
+#include "Vektoria\Timer.h" // Timer fütr die Frame-Rate-Anzeige
+#include "Vektoria\Splash.h" // Für den Splash-Screen (Allgemein)
+#include "Mmsystem.h" // Für den Splash-Screen-Sound
 
 #pragma comment(lib, "winmm.lib")
 
-using namespace Vektoria;
-
+// ------------------
 // Globale Variablen:
-TCHAR szClassName[] = TEXT("VektoriaWindowClass");
-static bool g_bFullscreen = false;
+// ------------------
 
-/// Globale Variablen:
-CGame g_game; // Das Spiel:
-CSplash g_splash;// Der Vektoria-Splash-Screen
+TCHAR szClassName[] = TEXT("VektoriaWindowClass"); // Klassenname
+static bool g_bFullscreen = false; // Flag, ob Fullscreen, per default in Nicht-Fullscreen gestartet 
+Vektoria::CSplash g_splash;// Der Vektoria-Splash-Screen
+
+// --------------------
+// Callback-Funktionen:
+// --------------------
 
 static void ChangeDisplay(HWND hWnd, unsigned int uWndFlags)
 {
@@ -125,7 +128,7 @@ static void ChangeDisplay(HWND hWnd, unsigned int uWndFlags)
 		SetWindowLongPtr(hWnd, GWL_EXSTYLE, dwExStyle);
 		SetWindowLongPtr(hWnd, GWL_STYLE, dwStyle);
 		SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, (DWORD)iWidth, (DWORD)iHeight, SWP_SHOWWINDOW);
-		g_game.WindowReSize(iWidth, iHeight);
+		CGame::GetInstance().WindowReSize(iWidth, iHeight);
 		SetForegroundWindow(hWnd);
 		SetFocus(hWnd);
 		ChangeDisplaySettings(&dmScreenSettings, CDS_FULLSCREEN);
@@ -159,14 +162,13 @@ static void ChangeDisplay(HWND hWnd, unsigned int uWndFlags)
 	}
 }
 
-
 //  Diese Funktion wird von Windows aufgerufen:
 LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
 	{
 	case WM_SIZE:
-		g_game.WindowReSize(LOWORD(lParam), HIWORD(lParam));
+		CGame::GetInstance().WindowReSize(LOWORD(lParam), HIWORD(lParam));
 		return 0;
 
 	case WM_KEYDOWN:
@@ -197,8 +199,9 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 // Eintrittspunkt:
 int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow)
 {
+	// INIT-Teil:
 
-	// INIT:
+	// Initialisierung des Fensters:
 	WNDCLASSA window_class = { 0 };
 	window_class.lpfnWndProc = WndProc;
 	window_class.lpszClassName = "Vektoria";
@@ -231,7 +234,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmd
 
 	ShowWindow(hwnd, SW_SHOW);
 
-	g_game.Init(hwnd, ChangeDisplay,&g_splash);
+	CGame::GetInstance().Init(hwnd, ChangeDisplay, &g_splash);
 
    // Zeig den Splash-Screen:
 	g_splash.Init(hwnd, hInstance);
@@ -240,7 +243,8 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmd
 	// Zeig das Fenster:
 	ShowWindow(hwnd, nCmdShow);
 
-	CTimer timer;
+	// Initialisiere den Timer: 
+	Vektoria::CTimer timer;
 	timer.SwitchFrameRateCalculationOn();
 	double dStartTime = timer.GetElapsedTime();
 	double dLastTime = dStartTime;
@@ -251,13 +255,13 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmd
 	bool bFirstTick = true;
 
 
-	// TICK: 
+	// TICK-Teil: 
 	bool bQuit = false;
 
 	do
 	{
 		MSG msg;
-		if (PeekMessage(&msg, hwnd, 0, 0, PM_REMOVE)) // if => Pro Frame wird eine Message verarbeitet, while =>  => Pro Frame werden alle anstehenden Messages verarbeitet
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) // if => Pro Frame wird eine Message verarbeitet, while =>  => Pro Frame werden alle anstehenden Messages verarbeitet. Achtung, zweiter Parameter muss NULL sein!
 		{
 			if (msg.message == WM_QUIT)
 			{
@@ -283,7 +287,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmd
 			}
 
 			// Game Tick
-			g_game.Tick(fTime, fTimeDelta);
+			CGame::GetInstance().Tick(fTime, fTimeDelta);
 			if (bFirstTick)
 			{
 				g_splash.Hide();
@@ -293,9 +297,8 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmd
 
 	} while (!bQuit);
 
-
-	g_game.Fini();
-
+	// FINI-Teil:
+	CGame::GetInstance().Fini();
 
 	return 0;
 }

@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "RigidBodyPlacement.h"
 #include "Vektoria/Placement.h"
 #include "Converter.h"
@@ -19,12 +20,16 @@ void RigidBodyPlacement::update() const
 
 	// Build transformation matrices
 	glm::quat rotation = transform.getRotation();
-	auto rotMat = Vektoria::CQuaternion(rotation.x, rotation.y, rotation.z, rotation.w).GetMatrix();
+	auto rotMat = Vektoria::CQuaternion(rotation.x, rotation.y, rotation.z, -rotation.w).GetMatrix();
 	Vektoria::CHMat scaleMat;
-	scaleMat.Scale(m_placement->GetScale());
+	scaleMat.Scale(m_scale.x, m_scale.y, m_scale.z);
+	
 
 	// Apply transformation
-	m_placement->SetMat(rotMat * scaleMat);
+	//m_placement->Scale(convertVector(m_scale));
+	//m_placement->RotateDelta(rotation.x, rotation.y, rotation.z, rotation.w);
+	Vektoria::CHMat newMat = rotMat * scaleMat;
+	m_placement->SetMat(newMat);
 	m_placement->TranslateDelta(position);
 }
 
@@ -46,4 +51,9 @@ void RigidBodyPlacement::setPlacement(Vektoria::CPlacement* placement)
 Vektoria::CPlacement* RigidBodyPlacement::getPlacement() const
 {
 	return m_placement;
+}
+
+void RigidBodyPlacement::setScale(glm::vec3 scale)
+{
+	m_scale = scale;
 }

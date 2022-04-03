@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "ParticlePlacementWorld.h"
 #include "R3D/ParticleEngine/ParticleWorld.h"
 #include "R3D/ParticleEngine/Particle.h"

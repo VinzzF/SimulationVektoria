@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "FallingCubeScene.h"
 
 #include "PhysicInterfaces/ParticlePlacementWorld.h"
@@ -8,39 +9,29 @@
 #include "Vektoria/Geo.h"
 #include "Vektoria/Placement.h"
 
-FallingCubeScene::FallingCubeScene(Vektoria::CGeo* geo)
-	: m_cubeGeo(geo)
+FallingCubeScene::FallingCubeScene()
 {
-	auto particlePlacementWorld = m_physicsEngine.getParticlePlacementWorld();
-	auto particleWorld = particlePlacementWorld->getWorld();
-
-	// Init scene graph placement and add it to the scene graph
-	m_placement = new Vektoria::CPlacement();
-	this->AddPlacement(m_placement);
-
-	m_placement->AddGeo(geo);
+	m_zmCube.MakeTextureDiffuse(const_cast<char*>("./../Resources/wood.jpg"));
+	m_zgCube.Init(1.0f, &m_zmCube);
+	m_zpCube.AddGeo(&m_zgCube);
+	this->AddPlacement(&m_zpCube);
 
 	// Init particle
 	m_particle = new r3::Particle();
 	m_particle->setMass(1.0f);
 
 	// Init particle placement and register it
-	m_particleNode = new ParticlePlacement(m_particle, m_placement);
+	m_particleNode = new ParticlePlacement(m_particle, &m_zpCube);
+	auto particlePlacementWorld = m_physicsEngine.getParticlePlacementWorld();
 	particlePlacementWorld->addParticlePlacement(m_particleNode);
 
 	// Init force generator and register it
 	m_particleGravity = new r3::ParticleGravity(glm::vec3(0.0f, -0.1f, 0.0f));
+	auto particleWorld = particlePlacementWorld->getWorld();
 	particleWorld->getParticleForceRegistry().add(m_particle, m_particleGravity);
 }
 
-FallingCubeScene::~FallingCubeScene()
-{
-}
-
-void FallingCubeScene::update(const float timeDelta)
-{
-	__super::update(timeDelta);
-}
+FallingCubeScene::~FallingCubeScene() = default;
 
 void FallingCubeScene::reset()
 {

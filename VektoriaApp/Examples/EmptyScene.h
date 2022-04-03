@@ -1,4 +1,5 @@
 #pragma once
+
 #include "SimulationScene.h"
 
 class EmptyScene : public SimulationScene

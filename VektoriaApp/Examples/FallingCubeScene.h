@@ -1,5 +1,6 @@
 #pragma once
-#include "SimulationScene.h"
+
+#include "DefaultScene.h"
 #include "PhysicInterfaces/ParticlePlacement.h"
 
 #include "R3D/ParticleEngine/Particle.h"
@@ -13,18 +14,18 @@ namespace Vektoria
 	class CPlacement;
 }
 
-class FallingCubeScene : public SimulationScene
+class FallingCubeScene : public DefaultScene
 {
 public:
-	explicit FallingCubeScene(Vektoria::CGeo* geo);
+	explicit FallingCubeScene();
 	~FallingCubeScene();
 
-	void update(float timeDelta) override;
 	void reset() override;
 
 private:
-	Vektoria::CPlacement* m_placement;
-	Vektoria::CGeo* m_cubeGeo;
+	Vektoria::CMaterial m_zmCube;
+	Vektoria::CPlacement m_zpCube;
+	Vektoria::CGeoCube m_zgCube;
 
 	r3::Particle* m_particle;
 	ParticlePlacement* m_particleNode;

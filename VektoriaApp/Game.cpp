@@ -1,71 +1,67 @@
+#include "pch.h"
 #include "Game.h"
 
-using namespace Vektoria;
+#include "Examples/FallingCubeScene.h"
+#include "CaveScene.h"
+#include "Examples/EmptyScene.h"
 
-CGame::CGame(void)
+// singleton
+CGame& CGame::GetInstance()
+{
+	static CGame instance;
+	return instance;
+}
+
+CGame::CGame()
 {
 }
 
-CGame::~CGame(void)
+CGame::~CGame()
 {
 }
 
-void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), CSplash * psplash)
+void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), Vektoria::CSplash* psplash)
 {
-	// Initialize Vektoria base
-	m_root.Init(psplash);
-	m_camera.Init(QUARTERPI);
-	m_frame.Init(hwnd, procOS); 
-	m_viewport.InitFull(&m_camera);
-	m_lightParallel.Init(CHVector(1.0f, 1.0f, 1.0f), CColor(1.0f, 1.0f, 1.0f));
-	
-	m_root.AddFrame(&m_frame);
-	m_frame.AddViewport(&m_viewport);
-	m_root.AddScene(&m_defaultScene);
-	m_defaultScene.AddPlacement(&m_cameraPlacement);
-	m_defaultScene.AddLightParallel(&m_lightParallel);
-	m_cameraPlacement.AddCamera(&m_camera);
+	// Hier die Initialisierung Deiner Vektoria-Objekte einfügen:
+	m_zr.Init(psplash);
+	// m_zf.SetApiRender(eApiRender_DirectX11_Shadermodel50_Monolight);
+	m_zf.Init(hwnd, procOS); 
+	m_zr.AddFrame(&m_zf);
+	m_zf.AddViewport(&m_zv);
 
-	// Init materials
-	m_sphereMat.Init();
-	m_cubeMat.Init();
-
-	m_sphereMat.MakeTextureDiffuse("./../Resources/stone.jpg");
-	m_cubeMat.MakeTextureDiffuse("./../Resources/wood.jpg");
-
-	m_root.AddMaterial(&m_sphereMat);
-	m_root.AddMaterial(&m_cubeMat);
-
-	// Init geometries
-	m_sphereGeo.Init(1.0f, &m_sphereMat, 50, 50);
-	m_cubeGeo.Init(1.0f, &m_cubeMat);
-	m_cameraPlacement.TranslateZ(8.0f);
+	m_zb.InitFull(const_cast<char*>("textures\\blue_image.jpg"));
+	m_zv.AddBackground(&m_zb);
 
 	// Init devices
-	m_frame.AddDeviceKeyboard(&m_keyboard);
-	m_frame.AddDeviceMouse(&m_mouse);
+	m_zf.AddDeviceKeyboard(&m_zdk);
+	m_zf.AddDeviceMouse(&m_zdm);
 
 	initScenes();
 
 	// Change the starting scene
-	changeScene(m_fallingCubeScene);
+	changeScene(0);
 }
 
 void CGame::Tick(float fTime, float fTimeDelta)
 {
-	if(m_activeScene)
+	// Root muss zuerst ticken
+	m_zr.Tick(fTimeDelta);
+
+	if (m_activeScene)
 	{
 		m_activeScene->update(fTimeDelta);
-		float timeDelta = 10.0f * fTimeDelta;
-		m_keyboard.PlaceWASD(m_cameraPlacement, timeDelta);
+		if (m_activeScene->getWASDCam()) m_zdk.PlaceWASD(m_activeScene->getCameraPlacement(), fTimeDelta);
 	}
 	handleUserInput();
 
-	m_root.Tick(fTimeDelta);
+	Sleep(1u);
 }
 
 void CGame::Fini()
 {
+	// globale Dependency Injection, bester Kompromiss...
+	SimulationScene::setGame(nullptr);
+
 	// Hier die Finalisierung Deiner Vektoria-Objekte einfügen:
 }
 
@@ -73,66 +69,84 @@ void CGame::WindowReSize(int iNewWidth, int iNewHeight)
 {
 	// Windows ReSize wird immer automatisch aufgerufen, wenn die Fenstergröße verändert wurde.
 	// Hier kannst Du dann die Auflösung des Viewports neu einstellen:
-	m_frame.ReSize(iNewWidth, iNewHeight);
+	m_zf.ReSize(iNewWidth, iNewHeight);
+}
+
+Vektoria::CRoot& CGame::getRoot()
+{
+	return m_zr;
 }
 
 Vektoria::CDeviceKeyboard& CGame::getKeyboard()
 {
-	return m_keyboard;
+	return m_zdk;
 }
 
 Vektoria::CDeviceMouse& CGame::getMouse()
 {
-	return m_mouse;
+	return m_zdm;
 }
 
 void CGame::initScenes()
 {
+	// globale Dependency Injection, bester Kompromiss...
+	SimulationScene::setGame(this);
+
 	// Example scene
-	m_fallingCubeScene = new FallingCubeScene(&m_cubeGeo);
-	prepareScene(m_fallingCubeScene);
+	addScene(new FallingCubeScene);
 
 	// ADD NEW SCENES HERE
 	// ...
-
+	addScene(new CaveScene);
 }
 
-void CGame::changeScene(SimulationScene* scene)
-{
-	if(m_activeScene)
-	{
-		m_root.SubScene(m_activeScene);
-	}
-	m_activeScene = scene;
-	if(scene)
-	{
-		scene->SubPlacement(&m_cameraPlacement);
-		scene->SubLightParallel(&m_lightParallel);
-
-		scene->AddPlacement(&m_cameraPlacement);
-		scene->AddLightParallel(&m_lightParallel);
-		m_root.AddScene(scene);
-	}
-}
-
-void CGame::prepareScene(SimulationScene* scene)
+void CGame::addScene(SimulationScene* scene)
 {
 	scene->setGame(this);
 	m_scenes.push_back(scene);
 }
 
+void CGame::changeScene(int sceneIdx)
+{
+	assert(sceneIdx >= 0 && sceneIdx < m_scenes.size());
+	changeScene(m_scenes[sceneIdx]);
+}
+
+void CGame::changeScene(SimulationScene* scene)
+{
+	if (m_activeScene)
+	{
+		m_zr.SubScene(m_activeScene);
+	}
+
+	m_activeScene = scene;
+
+	if (scene)
+	{
+		// first time init Viewport full, otherwise just change camera
+		if (m_zv.GetCamera())
+			m_zv.SetCamera(&scene->getCamera());
+		else
+			m_zv.InitFull(&scene->getCamera());
+
+		scene->activate();
+		
+		m_zr.AddScene(scene);
+	}
+}
+
 void CGame::handleUserInput()
 {
-	if(m_keyboard.KeyDown(DIK_1))
+	if (m_zdk.KeyDown(DIK_1))
 	{
 		prevScene();
 	}
-	else if(m_keyboard.KeyDown(DIK_2))
+	else if (m_zdk.KeyDown(DIK_2))
 	{
 		nextScene();
 	}
 
-	if(m_keyboard.KeyDown(DIK_T))
+	if (m_zdk.KeyDown(DIK_T))
 	{
 		m_activeScene->reset();
 	}
@@ -140,8 +154,8 @@ void CGame::handleUserInput()
 
 void CGame::nextScene()
 {
-	int sceneCount = m_scenes.size();
-	if(sceneCount <= 1) return;
+	const auto sceneCount = int(m_scenes.size());
+	if (sceneCount <= 1) return;
 
 	m_activeSceneIndex = (m_activeSceneIndex + 1) % sceneCount;
 	changeScene(m_scenes[m_activeSceneIndex]);
@@ -149,13 +163,9 @@ void CGame::nextScene()
 
 void CGame::prevScene()
 {
-	int sceneCount = m_scenes.size();
-	if(sceneCount <= 1) return;
+	const auto sceneCount = int(m_scenes.size());
+	if (sceneCount <= 1) return;
 
-	--m_activeSceneIndex;
-	if(m_activeSceneIndex < 0)
-	{
-		m_activeSceneIndex = sceneCount - 1;
-	}
+	if (--m_activeSceneIndex < 0) m_activeSceneIndex = sceneCount - 1;
 	changeScene(m_scenes[m_activeSceneIndex]);
 }

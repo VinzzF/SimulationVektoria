@@ -1,44 +1,28 @@
 #pragma once
 
-
-#ifdef _WIN64
-#ifdef _DEBUG
-#pragma comment (lib, "Vektoria_Debug64.lib")
-#pragma comment (lib, "VektoriaMath_Debug64.lib")
-#else
-#pragma comment (lib, "Vektoria_Release64.lib")
-#pragma comment (lib, "VektoriaMath_Release64.lib")
-#endif
-#else
-#ifdef _DEBUG
-#pragma comment (lib, "Vektoria_Debug.lib")
-#pragma comment (lib, "VektoriaMath_Debug.lib")
-#else
-#pragma comment (lib, "Vektoria_Release.lib")
-#pragma comment (lib, "VektoriaMath_Release.lib")
-#endif
-#endif
-
-#include "Examples/FallingCubeScene.h"
-
-#include "Vektoria\Root.h"
-
+class SimulationScene;
 class CGame
 {
+// singleton
+private:
+	CGame();
 public:
-	CGame(void);
-	~CGame(void);
+	CGame(const CGame&) = delete;
+	CGame(CGame&&) = delete;
+	~CGame();
+	CGame& operator=(const CGame&) = delete;
+	CGame& operator=(CGame&&) = delete;
+	static CGame& GetInstance();
 
-	// Wird zu Begin einmal aufgerufen
-	void Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), Vektoria::CSplash * psplash);
-	// Wird während der Laufzeit bei jedem Bildaufbau aufgerufen
+public:
+	void Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), Vektoria::CSplash* psplash);
 	void Tick(float fTime, float fTimeDelta);
-	// Wird am Ende einmal aufgerufen
 	void Fini();
 
-	// Wird immer dann aufgerufen, wenn der Benutzer die Fenstergröße verändert hat
 	void WindowReSize(int iNewWidth, int iNewHeight);
 
+	/** Get the root node */
+	Vektoria::CRoot& getRoot();
 	/** Get the keyboard */
 	Vektoria::CDeviceKeyboard& getKeyboard();
 	/** Get the mouse */
@@ -46,37 +30,9 @@ public:
 
 private:
 	void initScenes();
+	void addScene(SimulationScene* scene);
+	void changeScene(int sceneIdx);
 	void changeScene(SimulationScene* scene);
-
-	// Vektoria base
-	Vektoria::CRoot m_root;
-	Vektoria::CScene m_defaultScene;
-	Vektoria::CPlacement m_cameraPlacement;
-	Vektoria::CPlacement m_spherePlacement;
-	
-	Vektoria::CFrame m_frame;
-	Vektoria::CViewport m_viewport;
-	Vektoria::CCamera m_camera;
-	Vektoria::CLightParallel m_lightParallel;
-
-	/* Geometries */
-	Vektoria::CGeoSphere m_sphereGeo;
-	Vektoria::CGeoCube m_cubeGeo;
-
-	/* Material */
-	Vektoria::CMaterial m_sphereMat;
-	Vektoria::CMaterial m_cubeMat;
-
-	/* Input */
-	Vektoria::CDeviceKeyboard m_keyboard;
-	Vektoria::CDeviceMouse m_mouse;
-
-	/* Scenes */
-	SimulationScene* m_activeScene;
-
-	FallingCubeScene* m_fallingCubeScene;
-
-	void prepareScene(SimulationScene* scene);
 
 	/** Handle user input for scene changing. */
 	void handleUserInput();
@@ -86,6 +42,19 @@ private:
 	/** Change the active scene to the previous one. */
 	void prevScene();
 
+private:
+    // Hier ist Platz für Deine Vektoriaobjekte:
+	Vektoria::CRoot m_zr;
+	Vektoria::CFrame m_zf;
+	Vektoria::CViewport m_zv;
+	Vektoria::CBackground m_zb;
+
+	/* Input */
+	Vektoria::CDeviceKeyboard m_zdk;
+	Vektoria::CDeviceMouse m_zdm;
+
+	/* Scenes */
+	SimulationScene* m_activeScene;
 	std::vector<SimulationScene*> m_scenes;
 	int m_activeSceneIndex{};
 };

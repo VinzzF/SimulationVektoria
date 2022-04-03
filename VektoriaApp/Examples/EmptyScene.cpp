@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "EmptyScene.h"
 
 EmptyScene::EmptyScene()
