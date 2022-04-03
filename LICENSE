@@ -1,14 +1,16 @@
----------------------------------------------------------------------
-Vektoria Base Project
-#####################
+Copyright (c) 2022:
+Vektoria engine (core, lib, dlls, ...) - Tobias Breiner
+Simulation environment & Rumble3D (see https://github.com/Nelaty/Rumble3D) - Matthias Gensheimer
+Vektoria Project templates & setup - Tobias Breiner, Vinzenz Funk, Hochschule Kempten
+Enhancements, fixes, upgrade to latest Vektoria version (this fork) - Vinzenz Funk
 
-Licencing by the Company Vektoriua UG (haftungsbeschränkt)
+Vektoria Licencing by the Company Vektoriua UG (haftungsbeschränkt)
 Provided by:  Prof. Dr. Tobias Breiner 
 	* Base project
 	* ./shaders/
 	* ./textures/
 	* ./res/
-	
+
 
 - No warranties are given. The license may not give you all of the permissions necessary for your intended use. 
 - For example, other rights such as publicity, privacy, or moral rights may limit how you use the material. 
@@ -25,3 +27,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+This license is only eligible for contents provided in this repository.
+The Vektoria libraries ("Lib" folder), required to be downloaded separately, do not share this license.
