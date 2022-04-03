@@ -60,7 +60,7 @@ cbuffer TexInfo : register(b1)
 
 	uint uiTextureAdressMode		: packoffset(c15.x);
 	uint uLightScattering			: packoffset(c15.y);
-	float fHazeDummy1				: packoffset(c15.z);
+	float fPOMDistanceMax			: packoffset(c15.z);
 	float fHazeDummy2				: packoffset(c15.w);
 }
 
