@@ -2,7 +2,7 @@
 #include "Game.h"
 
 #include "Examples/FallingCubeScene.h"
-#include "CaveScene.h"
+#include "Examples/CaveScene.h"
 #include "Examples/EmptyScene.h"
 
 // singleton
@@ -26,7 +26,8 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), Ve
 {
 	// Hier die Initialisierung Deiner Vektoria-Objekte einfügen:
 	m_zr.Init(psplash);
-	// m_zf.SetApiRender(eApiRender_DirectX11_Shadermodel50_Monolight);
+	//m_zf.SetApiRender(Vektoria::eApiRender_DirectX11_Shadermodel50_Monolight);
+	//m_zf.SetApiRender(Vektoria::eApiRender_DirectX12); // use for DirectX12 rendering
 	m_zf.Init(hwnd, procOS); 
 	//m_zr.SetFrameRateMax(144.0f); // doesn't seem to be working at this time :(
 	m_zr.AddFrame(&m_zf);

@@ -60,10 +60,10 @@
     <ClInclude Include="PhysicInterfaces\RigidBodyPlacementWorld.h">
       <Filter>PhysicInterfaces</Filter>
     </ClInclude>
-    <ClInclude Include="CaveScene.h">
+    <ClInclude Include="DefaultScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="DefaultScene.h">
+    <ClInclude Include="Examples\CaveScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
@@ -101,10 +101,10 @@
     <ClCompile Include="PhysicInterfaces\RigidBodyPlacementWorld.cpp">
       <Filter>PhysicInterfaces</Filter>
     </ClCompile>
-    <ClCompile Include="CaveScene.cpp">
+    <ClCompile Include="DefaultScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="DefaultScene.cpp">
+    <ClCompile Include="Examples\CaveScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
   </ItemGroup>

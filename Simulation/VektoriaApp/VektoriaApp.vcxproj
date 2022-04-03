@@ -166,7 +166,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="CaveScene.h" />
+    <ClInclude Include="Examples\CaveScene.h" />
     <ClInclude Include="DefaultScene.h" />
     <ClInclude Include="Examples\EmptyScene.h" />
     <ClInclude Include="Examples\FallingCubeScene.h" />
@@ -183,7 +183,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CaveScene.cpp" />
+    <ClCompile Include="Examples\CaveScene.cpp" />
     <ClCompile Include="DefaultScene.cpp" />
     <ClCompile Include="Examples\EmptyScene.cpp" />
     <ClCompile Include="Examples\FallingCubeScene.cpp" />
