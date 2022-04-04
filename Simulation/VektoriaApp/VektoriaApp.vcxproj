@@ -80,20 +80,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir);$(RUMBLE3D_DIR)\Rumble3D\include;$(GLM_DIR);$(IncludePath)</IncludePath>
-    <LibraryPath>$(RUMBLE3D_DIR)\Build\$(PlatformShortName)\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)..\Rumble3D\Rumble3D\include;$(ProjectDir)..\Rumble3D\Rumble3D\include\glm;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\Rumble3D\Build\$(PlatformShortName)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir);$(RUMBLE3D_DIR)\Rumble3D\include;$(GLM_DIR);$(IncludePath)</IncludePath>
-    <LibraryPath>$(RUMBLE3D_DIR)\Build\$(PlatformShortName)\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)..\Rumble3D\Rumble3D\include;$(ProjectDir)..\Rumble3D\Rumble3D\include\glm;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\Rumble3D\Build\$(PlatformShortName)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir);$(RUMBLE3D_DIR)\Rumble3D\include;$(GLM_DIR);$(IncludePath)</IncludePath>
-    <LibraryPath>$(RUMBLE3D_DIR)\Build\$(PlatformShortName)\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)..\Rumble3D\Rumble3D\include;$(ProjectDir)..\Rumble3D\Rumble3D\include\glm;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\Rumble3D\Build\$(PlatformShortName)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir);$(RUMBLE3D_DIR)\Rumble3D\include;$(GLM_DIR);$(IncludePath)</IncludePath>
-    <LibraryPath>$(RUMBLE3D_DIR)\Build\$(PlatformShortName)\$(Configuration);$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir);$(ProjectDir)..\Rumble3D\Rumble3D\include;$(ProjectDir)..\Rumble3D\Rumble3D\include\glm;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\Rumble3D\Build\$(PlatformShortName)\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
