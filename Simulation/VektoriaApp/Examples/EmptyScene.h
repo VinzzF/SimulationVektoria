@@ -1,7 +1,5 @@
 #pragma once
 
-#include "SimulationScene.h"
-
 /**
  * An empty black scene
  */

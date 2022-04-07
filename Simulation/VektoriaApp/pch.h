@@ -47,3 +47,6 @@
 #endif
 #endif
 #include "Vektoria\Root.h"
+
+// common project includes
+#include "SimulationScene.h"

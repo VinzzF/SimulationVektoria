@@ -1,7 +1,5 @@
 #pragma once
 
-#include "SimulationScene.h"
-
 /**
  * Common scene to inherit from, that includes:
  * - A camera

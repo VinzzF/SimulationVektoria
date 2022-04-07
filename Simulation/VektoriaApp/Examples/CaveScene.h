@@ -1,7 +1,5 @@
 #pragma once
 
-#include "SimulationScene.h"
-
 /**
  * Example scene for a simplistic cave with 4 sides
  */
