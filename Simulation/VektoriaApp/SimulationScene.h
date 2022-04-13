@@ -18,6 +18,7 @@ public:
 	virtual void reset();
 
 	virtual void activate();
+	virtual void deactivate();
 
 	Vektoria::CCamera& getCamera();
 	Vektoria::CPlacement& getCameraPlacement();

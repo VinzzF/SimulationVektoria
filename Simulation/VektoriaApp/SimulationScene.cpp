@@ -40,6 +40,11 @@ void SimulationScene::activate()
 {
 }
 
+void SimulationScene::deactivate()
+{
+
+}
+
 Vektoria::CCamera& SimulationScene::getCamera()
 {
 	return m_zc;

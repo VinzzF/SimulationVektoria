@@ -103,12 +103,15 @@ void CGame::initScenes()
 
 void CGame::addScene(SimulationScene* scene)
 {
+	scene->SwitchOff();
+	m_zr.AddScene(scene);
 	m_scenes.push_back(scene);
 }
 
 void CGame::changeScene(int sceneIdx)
 {
 	assert(sceneIdx >= 0 && sceneIdx < m_scenes.size());
+	m_activeSceneIndex = sceneIdx;
 	changeScene(m_scenes[sceneIdx]);
 }
 
@@ -116,19 +119,19 @@ void CGame::changeScene(SimulationScene* scene)
 {
 	if (m_activeScene)
 	{
-		m_zr.SubScene(m_activeScene);
+		m_activeScene->deactivate();
+		m_activeScene->SwitchOff();
 	}
 
 	m_activeScene = scene;
 
 	if (scene)
 	{
-		// first time init Viewport full, otherwise just change camera
+		// change active scene's camera on viewport
 		m_zv.InitFull(&scene->getCamera());
 
 		scene->activate();
-		
-		m_zr.AddScene(scene);
+		scene->SwitchOn();
 	}
 }
 
@@ -154,8 +157,7 @@ void CGame::nextScene()
 	const auto sceneCount = int(m_scenes.size());
 	if (sceneCount <= 1) return;
 
-	m_activeSceneIndex = (m_activeSceneIndex + 1) % sceneCount;
-	changeScene(m_scenes[m_activeSceneIndex]);
+	changeScene((m_activeSceneIndex + 1) % sceneCount);
 }
 
 void CGame::prevScene()
@@ -164,5 +166,5 @@ void CGame::prevScene()
 	if (sceneCount <= 1) return;
 
 	if (--m_activeSceneIndex < 0) m_activeSceneIndex = sceneCount - 1;
-	changeScene(m_scenes[m_activeSceneIndex]);
+	changeScene(m_activeSceneIndex);
 }
