@@ -5,13 +5,10 @@
 SimulationScene::SimulationScene()
 	: m_bWASDCam(true)
 {
-	m_zc.Init(QUARTERPI);
-
-	m_zpCamera.AddCamera(&m_zc);
-	m_zpCamera.SetTranslationSensitivity(10.0f);
-	m_zpCamera.SetRotationSensitivity(1.0f);
-	m_zpCamera.TranslateZ(8.0f);
-	this->AddPlacement(&m_zpCamera);
+	m_cameraPlacement.SetTranslationSensitivity(10.0f);
+	m_cameraPlacement.SetRotationSensitivity(1.0f);
+	m_cameraPlacement.TranslateZ(8.0f);
+	this->AddPlacement(&m_cameraPlacement);
 }
 
 void SimulationScene::regMaterial(Vektoria::CMaterial* pzm)
@@ -42,17 +39,11 @@ void SimulationScene::activate()
 
 void SimulationScene::deactivate()
 {
-
-}
-
-Vektoria::CCamera& SimulationScene::getCamera()
-{
-	return m_zc;
 }
 
 Vektoria::CPlacement& SimulationScene::getCameraPlacement()
 {
-	return m_zpCamera;
+	return m_cameraPlacement;
 }
 
 void SimulationScene::setWASDCam(bool wasdCam)

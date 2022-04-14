@@ -23,6 +23,8 @@ public:
 
 	/** Get the root node */
 	Vektoria::CRoot& getRoot();
+	/** Get the camera */
+	Vektoria::CCamera& getCamera();
 	/** Get the keyboard */
 	Vektoria::CDeviceKeyboard& getKeyboard();
 	/** Get the mouse */
@@ -44,14 +46,15 @@ private:
 
 private:
     // Hier ist Platz für Deine Vektoriaobjekte:
-	Vektoria::CRoot m_zr;
-	Vektoria::CFrame m_zf;
-	Vektoria::CViewport m_zv;
-	Vektoria::CBackground m_zb;
+	Vektoria::CRoot m_root;
+	Vektoria::CFrame m_frame;
+	Vektoria::CCamera m_camera;
+	Vektoria::CViewport m_viewport;
+	Vektoria::CBackground m_background;
 
 	/* Input */
-	Vektoria::CDeviceKeyboard m_zdk;
-	Vektoria::CDeviceMouse m_zdm;
+	Vektoria::CDeviceKeyboard m_keyboard;
+	Vektoria::CDeviceMouse m_mouse;
 
 	/* Scenes */
 	SimulationScene* m_activeScene;

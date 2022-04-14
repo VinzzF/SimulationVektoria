@@ -7,7 +7,4 @@ DefaultScene::DefaultScene()
 	this->AddLightParallel(&m_zl);
 }
 
-DefaultScene::~DefaultScene()
-{
-
-}
+DefaultScene::~DefaultScene() = default;

@@ -25,21 +25,25 @@ CGame::~CGame()
 void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), Vektoria::CSplash* psplash)
 {
 	// Hier die Initialisierung Deiner Vektoria-Objekte einfügen:
-	m_zr.Init(psplash);
+	m_root.Init(psplash);
 	//m_zf.SetApiRender(Vektoria::eApiRender_DirectX11_Shadermodel50_Monolight);
 	//m_zf.SetApiRender(Vektoria::eApiRender_DirectX12); // use for DirectX12 rendering
-	m_zf.Init(hwnd, procOS); 
+	m_frame.Init(hwnd, procOS); 
 	//m_zr.SetFrameRateMax(144.0f); // doesn't seem to be working at this time :(
-	m_zr.AddFrame(&m_zf);
-	m_zf.AddViewport(&m_zv);
+	m_root.AddFrame(&m_frame);
+	m_frame.AddViewport(&m_viewport);
 
 	// Init background (comment out if black background is desired)
-	m_zb.InitFull(const_cast<char*>("textures\\blue_image.jpg"));
-	m_zv.AddBackground(&m_zb);
+	m_background.InitFull(const_cast<char*>("textures\\blue_image.jpg"));
+	m_viewport.AddBackground(&m_background);
 
 	// Init devices
-	m_zf.AddDeviceKeyboard(&m_zdk);
-	m_zf.AddDeviceMouse(&m_zdm);
+	m_frame.AddDeviceKeyboard(&m_keyboard);
+	m_frame.AddDeviceMouse(&m_mouse);
+
+	// Init camera & viewport
+	m_camera.Init(QUARTERPI);
+	m_viewport.InitFull(&m_camera);
 
 	// Init scenes
 	initScenes();
@@ -49,12 +53,12 @@ void CGame::Init(HWND hwnd, void(*procOS)(HWND hwnd, unsigned int uWndFlags), Ve
 void CGame::Tick(float fTime, float fTimeDelta)
 {
 	// Root must tick first! (initializes game on first tick)
-	m_zr.Tick(fTimeDelta);
+	m_root.Tick(fTimeDelta);
 
 	if (m_activeScene)
 	{
 		m_activeScene->update(fTimeDelta);
-		if (m_activeScene->getWASDCam()) m_zdk.PlaceWASD(m_activeScene->getCameraPlacement(), fTimeDelta);
+		if (m_activeScene->getWASDCam()) m_keyboard.PlaceWASD(m_activeScene->getCameraPlacement(), fTimeDelta);
 	}
 	handleUserInput();
 
@@ -73,22 +77,27 @@ void CGame::WindowReSize(int iNewWidth, int iNewHeight)
 {
 	// Windows ReSize wird immer automatisch aufgerufen, wenn die Fenstergröße verändert wurde.
 	// Hier kannst Du dann die Auflösung des Viewports neu einstellen:
-	m_zf.ReSize(iNewWidth, iNewHeight);
+	m_frame.ReSize(iNewWidth, iNewHeight);
 }
 
 Vektoria::CRoot& CGame::getRoot()
 {
-	return m_zr;
+	return m_root;
+}
+
+Vektoria::CCamera& CGame::getCamera()
+{
+	return m_camera;
 }
 
 Vektoria::CDeviceKeyboard& CGame::getKeyboard()
 {
-	return m_zdk;
+	return m_keyboard;
 }
 
 Vektoria::CDeviceMouse& CGame::getMouse()
 {
-	return m_zdm;
+	return m_mouse;
 }
 
 void CGame::initScenes()
@@ -104,7 +113,7 @@ void CGame::initScenes()
 void CGame::addScene(SimulationScene* scene)
 {
 	scene->SwitchOff();
-	m_zr.AddScene(scene);
+	m_root.AddScene(scene);
 	m_scenes.push_back(scene);
 }
 
@@ -119,6 +128,7 @@ void CGame::changeScene(SimulationScene* scene)
 {
 	if (m_activeScene)
 	{
+		m_activeScene->getCameraPlacement().SubCamera(&m_camera);
 		m_activeScene->deactivate();
 		m_activeScene->SwitchOff();
 	}
@@ -127,9 +137,7 @@ void CGame::changeScene(SimulationScene* scene)
 
 	if (scene)
 	{
-		// change active scene's camera on viewport
-		m_zv.InitFull(&scene->getCamera());
-
+		scene->getCameraPlacement().AddCamera(&m_camera);
 		scene->activate();
 		scene->SwitchOn();
 	}
@@ -137,16 +145,16 @@ void CGame::changeScene(SimulationScene* scene)
 
 void CGame::handleUserInput()
 {
-	if (m_zdk.KeyDown(DIK_1))
+	if (m_keyboard.KeyDown(DIK_1))
 	{
 		prevScene();
 	}
-	else if (m_zdk.KeyDown(DIK_2))
+	else if (m_keyboard.KeyDown(DIK_2))
 	{
 		nextScene();
 	}
 
-	if (m_zdk.KeyDown(DIK_T))
+	if (m_keyboard.KeyDown(DIK_T))
 	{
 		m_activeScene->reset();
 	}

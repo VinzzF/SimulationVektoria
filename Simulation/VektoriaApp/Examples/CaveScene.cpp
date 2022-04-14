@@ -7,8 +7,8 @@ CaveScene::CaveScene(float fWidth /*= 8.0f*/, float fDepth /*= 6.0f*/, float fHe
 	, m_fHeight(fHeight)
 	, m_fThickness(fThickness)
 {
-	m_zpCamera.RotateX(UM_DEG2RAD(-20.0f));
-	m_zpCamera.TranslateDelta(fWidth * 0.5f, 12.0f, 25.0f);
+	m_cameraPlacement.RotateX(UM_DEG2RAD(-20.0f));
+	m_cameraPlacement.TranslateDelta(fWidth * 0.5f, 12.0f, 25.0f);
 
 	// Boden
 	m_zmSides[0].LoadPreset("EarthCracked");

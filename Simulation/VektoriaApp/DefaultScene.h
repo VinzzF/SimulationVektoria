@@ -12,7 +12,7 @@ public:
 	~DefaultScene();
 
 protected:
-	Vektoria::CPlacement m_zpCamera;
+	Vektoria::CPlacement m_cameraPlacement;
 	Vektoria::CCamera m_zc;
 	Vektoria::CLightParallel m_zl;
 };
