@@ -1,11 +1,7 @@
 #include "pch.h"
 #include "ParticlePlacementWorld.h"
 
-#include "R3D/ParticleEngine/ParticleWorld.h"
-#include "R3D/ParticleEngine/Particle.h"
 #include "R3D/ParticleEngine/DefaultParticleEngineCI.h"
-
-#include "ParticlePlacement.h"
 
 ParticlePlacementWorld::ParticlePlacementWorld()
 {

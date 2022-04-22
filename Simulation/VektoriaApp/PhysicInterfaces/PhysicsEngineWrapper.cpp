@@ -4,7 +4,6 @@
 #include "R3D/ParticleEngine/ParticleWorld.h"
 #include "R3D/RigidBodyEngine/RigidBodyWorld.h"
 
-#include "ParticlePlacementWorld.h"
 #include "RigidBodyPlacementWorld.h"
 
 PhysicsEngineWrapper::PhysicsEngineWrapper()

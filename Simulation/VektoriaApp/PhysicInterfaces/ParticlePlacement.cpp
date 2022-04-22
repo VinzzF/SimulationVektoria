@@ -1,10 +1,6 @@
 #include "pch.h"
 #include "ParticlePlacement.h"
 
-#include "R3D/ParticleEngine/Particle.h"
-
-#include "Converter.h"
-
 ParticlePlacement::ParticlePlacement(r3::Particle* particle,
 									 Vektoria::CPlacement* placement)
 	: m_particle(particle),

@@ -1,10 +1,6 @@
 #include "pch.h"
 #include "FallingCubeScene.h"
 
-#include "PhysicInterfaces/ParticlePlacementWorld.h"
-#include "PhysicInterfaces/ParticlePlacement.h"
-
-#include "R3D/ParticleEngine/ParticleWorld.h"
 
 FallingCubeScene::FallingCubeScene()
 {

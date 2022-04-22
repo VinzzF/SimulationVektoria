@@ -49,4 +49,12 @@
 #include "Vektoria\Root.h"
 
 // common project includes
+#include "PhysicInterfaces/Converter.h"
+#include "PhysicInterfaces/ParticlePlacement.h"
+#include "PhysicInterfaces/ParticlePlacementWorld.h"
+
+#include "R3D/ParticleEngine/Particle.h"
+#include "R3D/ParticleEngine/ParticleWorld.h"
+#include "R3D/ParticleEngine/ParticleGravity.h"
+
 #include "SimulationScene.h"

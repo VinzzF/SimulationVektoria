@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "RigidBodyPlacement.h"
-#include "Converter.h"
 
 RigidBodyPlacement::RigidBodyPlacement(r3::RigidBody* rigidBody, 
 									   Vektoria::CPlacement* placement)
