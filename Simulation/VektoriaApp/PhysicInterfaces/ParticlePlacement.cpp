@@ -12,6 +12,12 @@ ParticlePlacement::ParticlePlacement(r3::Particle* particle,
 {
 }
 
+ParticlePlacement::ParticlePlacement()
+	: m_particle(nullptr)
+	, m_placement(nullptr)
+{
+}
+
 ParticlePlacement::~ParticlePlacement()
 = default;
 

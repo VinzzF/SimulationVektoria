@@ -8,6 +8,7 @@ namespace r3
 class ParticlePlacement
 {
 public:
+	explicit ParticlePlacement();
 	explicit ParticlePlacement(r3::Particle* particle, 
 							   Vektoria::CPlacement* placement);
 	~ParticlePlacement();
