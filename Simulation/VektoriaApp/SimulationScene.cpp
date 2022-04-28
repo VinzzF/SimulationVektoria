@@ -1,6 +1,5 @@
 ﻿#include "pch.h"
 #include "SimulationScene.h"
-#include "Game.h"
 
 SimulationScene::SimulationScene()
 	: m_bWASDCam(true)

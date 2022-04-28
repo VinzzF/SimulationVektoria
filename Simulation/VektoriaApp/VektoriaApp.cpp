@@ -1,14 +1,13 @@
-// ------------------------------------------------------------------------
-// VektoriaApp.cpp : Definiert den Einstiegspunkt für die Konsolenanwendung
+ï»¿// ------------------------------------------------------------------------
+// VektoriaApp.cpp : Definiert den Einstiegspunkt fÃ¼r die Konsolenanwendung
 // Autor: Tobias Breiner
 // ------------------------------------------------------------------------
 
 #include "pch.h"
 #include "resource.h" // Das Icon
-#include "Game.h" // Das Spiel
-#include "Vektoria\Timer.h" // Timer fütr die Frame-Rate-Anzeige
-#include "Vektoria\Splash.h" // Für den Splash-Screen (Allgemein)
-#include "Mmsystem.h" // Für den Splash-Screen-Sound
+#include "Vektoria\Timer.h" // Timer fÃ¼tr die Frame-Rate-Anzeige
+#include "Vektoria\Splash.h" // FÃ¼r den Splash-Screen (Allgemein)
+#include "Mmsystem.h" // FÃ¼r den Splash-Screen-Sound
 
 #pragma comment(lib, "winmm.lib")
 
@@ -110,7 +109,7 @@ static void ChangeDisplay(HWND hWnd, unsigned int uWndFlags)
 	else if (uWndFlags == 3) // Schalte Fullscreen an:
 	{
 		g_bFullscreen = true;
-		// Automatisch die Größe des primären Monitors ermitteln
+		// Automatisch die GrÃ¶ÃŸe des primÃ¤ren Monitors ermitteln
 		int iWidth = GetSystemMetrics(SM_CXSCREEN);
 		int iHeight = GetSystemMetrics(SM_CYSCREEN);
 
@@ -133,7 +132,7 @@ static void ChangeDisplay(HWND hWnd, unsigned int uWndFlags)
 		SetFocus(hWnd);
 		ChangeDisplaySettings(&dmScreenSettings, CDS_FULLSCREEN);
 	}
-	else if (uWndFlags == 4) // Rücke Fortschrittsanzeiger weiter:
+	else if (uWndFlags == 4) // RÃ¼cke Fortschrittsanzeiger weiter:
 	{
 		static int s_uProgress = 0;
 
@@ -156,7 +155,7 @@ static void ChangeDisplay(HWND hWnd, unsigned int uWndFlags)
 		s_uMaterial = 0;
 		s_uAudio = 0;
 	}
-	else if (uWndFlags == 16) // Nächste fünf Events werden Knotenanzahlen übermittelt:
+	else if (uWndFlags == 16) // NÃ¤chste fÃ¼nf Events werden Knotenanzahlen Ã¼bermittelt:
 	{
 		s_uNextIsProgressEvents = 5;
 	}
@@ -217,7 +216,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmd
 		window_class.lpszClassName, // Klassenname
 		WS_OVERLAPPEDWINDOW, // Stil
 		CW_USEDEFAULT, CW_USEDEFAULT, // linke obere Ecke in Pixeln => Windows entscheidet
-		CW_USEDEFAULT, CW_USEDEFAULT, // Größe des Fensters in Pixeln  => Windows entscheidet
+		CW_USEDEFAULT, CW_USEDEFAULT, // GrÃ¶ÃŸe des Fensters in Pixeln  => Windows entscheidet
 		HWND_DESKTOP,           // Das Fenster ist ein Unterfenster des Desktops
 		NULL, // Handle zum Menu => gibts nicht => 0
 		hInstance,
@@ -278,7 +277,7 @@ int APIENTRY wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmd
 			//FrameRate
 			timer.Tick(fTime, fTimeDelta);
 
-			if (fTime - fTimeLastShow >= 0.2F) // SetWindowTextA stürzt ab, wenn es zu schnell hintereinander aufgerufen wird (Microsoft-Fehler) => daher die Zeitbegrenzung
+			if (fTime - fTimeLastShow >= 0.2F) // SetWindowTextA stÃ¼rzt ab, wenn es zu schnell hintereinander aufgerufen wird (Microsoft-Fehler) => daher die Zeitbegrenzung
 			{
 				char ac[300];
 				sprintf_s(ac, 300, "VektoriaApp        FR-Average: %.3f; FR-Long Average: %.3f; FR Min: %.3f; FR Max: %.3f", timer.m_fFrameRateAverage, timer.m_fFrameRateAverageLong, timer.m_fFrameRateMin, timer.m_fFrameRateMax);

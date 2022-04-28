@@ -57,4 +57,5 @@
 #include "R3D/ParticleEngine/ParticleWorld.h"
 #include "R3D/ParticleEngine/ParticleGravity.h"
 
+#include "Game.h"
 #include "SimulationScene.h"
