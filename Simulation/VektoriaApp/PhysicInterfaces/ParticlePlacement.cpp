@@ -38,7 +38,7 @@ void ParticlePlacement::setPlacement(Vektoria::CPlacement* placement)
 	m_placement = placement;
 }
 
-Vektoria::CPlacement* ParticlePlacement::setPlacement() const
+Vektoria::CPlacement* ParticlePlacement::getPlacement() const
 {
 	return m_placement;
 }

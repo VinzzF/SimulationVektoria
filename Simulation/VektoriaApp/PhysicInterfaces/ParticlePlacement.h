@@ -24,7 +24,7 @@ public:
 	/** Set the current placement. */
 	void setPlacement(Vektoria::CPlacement* placement);
 	/** Get the current placement. */
-	Vektoria::CPlacement* setPlacement() const;
+	Vektoria::CPlacement* getPlacement() const;
 
 private:
 	r3::Particle* m_particle;
