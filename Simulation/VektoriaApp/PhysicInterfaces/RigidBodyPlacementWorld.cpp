@@ -36,6 +36,7 @@ std::vector<r3::RigidBody*>& RigidBodyPlacementWorld::getRigidBodies()
 void RigidBodyPlacementWorld::addRigidBodyPlacement(RigidBodyPlacement* placement)
 {
 	m_rigidBodyPlacements.emplace_back(placement);
+	m_world->addRigidBody(placement->getRigidBody());
 }
 
 bool RigidBodyPlacementWorld::removeRigidBodyPlacement(RigidBodyPlacement* placement)

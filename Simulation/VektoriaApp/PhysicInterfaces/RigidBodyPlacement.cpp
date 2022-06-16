@@ -3,8 +3,9 @@
 
 RigidBodyPlacement::RigidBodyPlacement(r3::RigidBody* rigidBody, 
 									   Vektoria::CPlacement* placement)
-	: m_rigidBody(rigidBody),
-	m_placement(placement)
+	: m_scale(1.0f, 1.0f, 1.0f)
+	, m_rigidBody(rigidBody)
+	, m_placement(placement)
 {
 }
 
